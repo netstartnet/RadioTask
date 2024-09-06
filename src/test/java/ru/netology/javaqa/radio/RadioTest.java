@@ -6,6 +6,71 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
+    public void countTheQuantity() {
+        Radio radio = new Radio(20);
+
+        radio.setFm(15);
+
+        int expected = 15;
+        int actual = radio.getFm();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void lessThanZeroFm() {
+        Radio radio = new Radio();
+        radio.setFm(0);
+
+        radio.prev();
+
+        int expected = 9;
+        int actual = radio.getFm();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void lessThanZeroFmMy() {
+        Radio radio = new Radio(20);
+        radio.setFm(0);
+
+        radio.prev();
+
+        int expected = 19;
+        int actual = radio.getFm();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+
+    @Test
+    public void moreThanMaximumFm() {
+        Radio radio = new Radio();
+        radio.setFm(9);
+
+        radio.next();
+
+        int expected = 0;
+        int actual = radio.getFm();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void moreThanMaximumFmMy() {
+        Radio radio = new Radio(20);
+        radio.setFm(19);
+
+        radio.next();
+
+        int expected = 0;
+        int actual = radio.getFm();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldSetFm() {
         Radio radio = new Radio();
 
@@ -129,32 +194,6 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
-    public void lessThanZeroFm() {
-        Radio radio = new Radio();
-        radio.setFm(0);
-
-        radio.prev();
-
-        int expected = 9;
-        int actual = radio.getFm();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-
-    @Test
-    public void moreThanMaximumFm() {
-        Radio radio = new Radio();
-        radio.setFm(9);
-
-        radio.next();
-
-        int expected = 0;
-        int actual = radio.getFm();
-
-        Assertions.assertEquals(expected, actual);
-    }
 
     @Test
     public void borderlineOneFm() {
@@ -269,6 +308,6 @@ public class RadioTest {
         int actual = radio.getVolume();
 
         Assertions.assertEquals(expected, actual);
+   
     }
-
 }

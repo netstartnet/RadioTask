@@ -3,6 +3,15 @@ package ru.netology.javaqa.radio;
 public class Radio {
     private int fm;
     private int volume;
+    private int maxStation;
+
+    public Radio() {
+        maxStation = 9;
+    }
+
+    public Radio(int stationsCount) {
+        maxStation = stationsCount - 1;
+    }
 
     public int getFm() {
         return fm;
@@ -12,7 +21,7 @@ public class Radio {
         if (fm < 0) {
             return;
         }
-        if (fm > 9) {
+        if (fm > maxStation) {
             return;
         }
         this.fm = fm;
@@ -32,21 +41,22 @@ public class Radio {
         this.volume = volume;
     }
 
-    public void next() {
-        if (fm != 9) {
+    public void next() {  //AboveMaxFm
+        if (fm != maxStation) {
             fm++;
         } else {
             fm = 0;
         }
     }
 
-    public void prev() {
+    public void prev() {  //AboveMinFm
         if (fm != 0) {
             fm--;
         } else {
-            fm = 9;
+            fm = maxStation;
         }
     }
+
 
     public void increaseVolume() {
         if (volume < 100) {
@@ -64,6 +74,7 @@ public class Radio {
         if (volume == 0) {
             volume = 0;
         }
+
     }
 
 }
